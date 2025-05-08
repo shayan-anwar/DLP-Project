@@ -1,28 +1,63 @@
-# Facial Recognition with ViT on LFW Dataset 
-This project demonstrates facial recognition using a Vision Transformer (ViT) model on the LFW (Labeled Faces in the Wild) dataset. The dataset is provided as a zip archive (archive.zip), which will be uploaded and processed at runtime.
+# Facial Recognition with ViT and FaceNet on LFW Dataset
+This project demonstrates facial recognition using two deep learning models: a Vision Transformer (ViT) and a FaceNet model built from scratch, applied to the LFW (Labeled Faces in the Wild) dataset. The dataset is provided as a zip archive (archive.zip), which is uploaded and processed at runtime.
 
 # Overview 
-The objective of this project is to classify faces into different individuals using a pre-trained Vision Transformer (ViT) model. The model is fine-tuned to perform facial recognition on the LFW dataset.
+The objective of this project is to classify and verify faces using two approaches:
+
+A pre-trained Vision Transformer (ViT) fine-tuned on the LFW dataset.
+
+A FaceNet model, implemented from scratch, that learns facial embeddings for identity verification.
+
+The goal is to evaluate and compare both models' performance in facial recognition tasks.
 
 # Features
-Pre-trained Vision Transformer (ViT): Uses a pre-trained ViT model fine-tuned for facial recognition.
+* Pre-trained Vision Transformer (ViT)
+Fine-tuned on LFW for multi-class facial classification (5,749 individuals).
 
-LFW Dataset: Labeled Faces in the Wild dataset is used for training and testing the model.
+Uses a transformer-based attention mechanism for global feature representation.
 
-Data Augmentation: The dataset is processed with necessary transformations for training, including resizing, normalization, and augmentation.
+* FaceNet (Custom-Built)
+CNN-based architecture trained from scratch using Triplet Loss.
 
-Model Evaluation: The model’s performance is evaluated using accuracy and loss metrics
+Learns 128-dimensional face embeddings for identity verification.
+
+Classification/verification is performed using cosine similarity or KNN on embeddings.
+
+#  Model Evaluation
+ViT: Evaluated using accuracy and confusion matrix.
+
+FaceNet: Evaluated using verification accuracy, ROC-AUC, and distance-based matching.
 
 # Dataset 
-The LFW dataset is included in the project as archive.zip. Upon running the script, the zip file is extracted, and the dataset is preprocessed into appropriate train-test splits.
+13,000 labeled facial images of 5,749 unique individuals.
 
-The dataset contains 13,000 labeled images of 5,749 individuals, used for training and testing.
+Preprocessed with resizing, normalization, and augmentation.
+
+Automatically extracted from archive.zip during runtime.
+
+The LFW dataset is included in the project as archive.zip. On execution:
+
+The zip is extracted.
+
+Data is split into train and test sets.
+
+Images are resized to 224x224 and augmented during training.
+
+This dataset features real-world variations in facial images, making it a suitable benchmark for evaluating facial recognition models.
 
 # Model Architecture
-This project uses the Vision Transformer (ViT) model from the torchvision library. We fine-tune the pre-trained ViT model with the following modifications:
+* Vision Transformer (ViT)
+Imported from torchvision.models, pre-trained on ImageNet.
 
-Replace the final classification layer to match the number of classes in the LFW dataset.
+Final classification layer replaced to match the number of identities in the LFW dataset.
 
-Use CrossEntropy loss and AdamW optimizer for training.
+Trained using CrossEntropyLoss, AdamW optimizer, and ReduceLROnPlateau scheduler.
 
-The learning rate is dynamically adjusted with ReduceLROnPlateau.
+* FaceNet (From Scratch)
+Built using convolutional layers with batch normalization and ReLU activations.
+
+Outputs 128-dimensional embeddings.
+
+Trained with Triplet Loss on anchor-positive-negative triplets.
+
+Final classification is based on similarity of embeddings rather than direct softmax output.
