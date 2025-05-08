@@ -39,13 +39,13 @@ This dataset features real-world variations in facial images, making it a suitab
 # Model Architecture
 ** Vision Transformer (ViT)
 
-    Imported from torchvision.models, pre-trained on ImageNet.
-    Final classification layer replaced to match the number of identities in the LFW dataset.
-    Trained using CrossEntropyLoss, AdamW optimizer, and ReduceLROnPlateau scheduler.
+   Imported from torchvision.models, pre-trained on ImageNet.
+   Final classification layer replaced to match the number of identities in the LFW dataset.
+   Trained using CrossEntropyLoss, AdamW optimizer, and ReduceLROnPlateau scheduler.
 
 ** FaceNet (From Scratch)
   
-    Built using convolutional layers with batch normalization and ReLU activations.
-    Outputs 128-dimensional embeddings.
-    Trained with Triplet Loss on anchor-positive-negative triplets.
-    Final classification is based on similarity of embeddings rather than direct softmax output.
+   Built using convolutional layers with batch normalization and ReLU activations.
+   Outputs 128-dimensional embeddings.
+   Trained with Triplet Loss on anchor-positive-negative triplets.
+   Final classification is based on similarity of embeddings rather than direct softmax output.
