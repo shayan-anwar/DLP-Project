@@ -12,16 +12,16 @@ The goal is to evaluate and compare both models' performance in facial recogniti
 
 # Features
 * Pre-trained Vision Transformer (ViT)
-Fine-tuned on LFW for multi-class facial classification (5,749 individuals).
+    Fine-tuned on LFW for multi-class facial classification (5,749 individuals).
 
-Uses a transformer-based attention mechanism for global feature representation.
+    Uses a transformer-based attention mechanism for global feature representation.
 
 * FaceNet (Custom-Built)
-CNN-based architecture trained from scratch using Triplet Loss.
+    CNN-based architecture trained from scratch using Triplet Loss.
 
-Learns 128-dimensional face embeddings for identity verification.
+    Learns 128-dimensional face embeddings for identity verification.
 
-Classification/verification is performed using cosine similarity or KNN on embeddings.
+  Classification/verification is performed using cosine similarity or KNN on embeddings.
 
 #  Model Evaluation
 ViT: Evaluated using accuracy and confusion matrix.
@@ -47,17 +47,17 @@ This dataset features real-world variations in facial images, making it a suitab
 
 # Model Architecture
 * Vision Transformer (ViT)
-Imported from torchvision.models, pre-trained on ImageNet.
+    Imported from torchvision.models, pre-trained on ImageNet.
 
-Final classification layer replaced to match the number of identities in the LFW dataset.
+    Final classification layer replaced to match the number of identities in the LFW dataset.
 
-Trained using CrossEntropyLoss, AdamW optimizer, and ReduceLROnPlateau scheduler.
+    Trained using CrossEntropyLoss, AdamW optimizer, and ReduceLROnPlateau scheduler.
 
 * FaceNet (From Scratch)
-Built using convolutional layers with batch normalization and ReLU activations.
+    Built using convolutional layers with batch normalization and ReLU activations.
 
-Outputs 128-dimensional embeddings.
+    Outputs 128-dimensional embeddings.
 
-Trained with Triplet Loss on anchor-positive-negative triplets.
+    Trained with Triplet Loss on anchor-positive-negative triplets.
 
-Final classification is based on similarity of embeddings rather than direct softmax output.
+    Final classification is based on similarity of embeddings rather than direct softmax output.
